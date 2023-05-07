@@ -1,0 +1,12 @@
+timer:{{time.getHours()}}:{{time.getMinutes()}}:{{time.getSeconds()}}
+<button (click)="start()">Start</button>
+<form *ngFor="let item of Quests;let i=index">
+    <div>
+        <label for="">{{item.QuestionID}}. </label>
+        <label for="">{{item.Description}}</label>
+    </div>
+    <div *ngFor="let option of item.Options">
+     <input type="radio" name="options" id="" value="{{option}}" [(ngModel)]="answers[i]" ><label for="">{{option}}</label>
+    </div>
+</form>
+<button (click)="sub()">submit</button>
