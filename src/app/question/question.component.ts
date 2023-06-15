@@ -25,14 +25,25 @@ export class QuestionComponent {
     
   }
   sub(){
+    let score=0;
     clearInterval(this.intev)
     let i=0;
     for (const iterator of this.Quests) {
       this.qdata.Ansewrs.push({QuestionID:iterator.QuestionID,Description:iterator.Description,Answer:this.answers[i]})
       i++;
     }
+    this.Quests.map((obj1,i)=>{
+      console.log(this.qdata.Ansewrs);
+      
+      if( this.qdata.Ansewrs.find(obj=>obj.QuestionID==obj1.QuestionID)?.Answer==obj1.Answer)
+      {
+        score++;
+      }
+    })
     console.log(this.answers);
     console.log(this.qdata.Ansewrs);
+    console.log(score);
+    
   }
   start(){
   this.intev=setInterval(()=>{

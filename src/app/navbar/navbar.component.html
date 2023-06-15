@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+    <span class="navbar-brand">Logo</span>
+    <button mat-icon-button (click)="toggleSidebar()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar>
+  <mat-sidenav-container class="container">
+    <mat-sidenav #sidenav mode="side" [opened]="sidebarOpened">
+      <button mat-icon-button (click)="toggleSidebar()" class="close-button">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-nav-list>
+        <a mat-list-item routerLink="/" routerLinkActive="active">Home</a>
+        <a mat-list-item routerLink="/about" routerLinkActive="active">About</a>
+        <a mat-list-item routerLink="/services" routerLinkActive="active">Services</a>
+        <a mat-list-item routerLink="/contact" routerLinkActive="active">Contact</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <!-- Your page content goes here -->
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  
