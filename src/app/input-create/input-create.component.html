@@ -1,0 +1,20 @@
+<div [formGroup]="Form">
+    <container-element [ngSwitch]="input.controlType">
+        <div *ngSwitchCase="'text'">
+            <input type="text" [name]="input.name" [id]="input.id" [value]="input.value" formControlName="{{input.key}}">
+        </div>
+        <div *ngSwitchCase="'radio'">
+            <label *ngFor="let item of input.options">
+                {{item.key}}
+                <input type="radio" [name]="input.key" [id]="input.id" [value]="item.value" [formControlName]="input.key">
+            </label>
+        </div>
+        <div *ngSwitchCase="'dropdown'">
+            <select [name]="input.name" [id]="input.id" formControlName="{{input.key}}">
+                <ng-container *ngFor="let item of input.options">
+                    <option [value]="item.key">{{item.value}}</option>
+                </ng-container>
+            </select>
+        </div>
+     </container-element>
+</div>

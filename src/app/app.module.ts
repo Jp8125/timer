@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { QuestionComponent } from './question/question.component';
 import {HttpClientModule} from '@angular/common/http'
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropDownComponent } from './drop-down/drop-down.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -13,14 +13,23 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatIconModule } from '@angular/material/icon';
+import { InputCreateComponent } from './input-create/input-create.component';
+import { FormCreateComponent } from './form-create/form-create.component';
+import { StoreModule } from '@ngrx/store';
+import { counterReducer } from './reducers/counter.reducer';
+import { StoreComponent } from './store/store.component';
 @NgModule({
   declarations: [
     AppComponent,
     QuestionComponent,
     DropDownComponent,
-    NavbarComponent
+    NavbarComponent,
+    InputCreateComponent,
+    FormCreateComponent,
+    StoreComponent
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -28,7 +37,8 @@ import { MatIconModule } from '@angular/material/icon';
     BrowserAnimationsModule,
     MatToolbarModule,MatSidenavModule,
     MatListModule,
-    MatIconModule
+    MatIconModule,
+    StoreModule.forRoot({ count: counterReducer })
 
   ],
   providers: [],

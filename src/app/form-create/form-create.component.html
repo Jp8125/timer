@@ -1,0 +1,6 @@
+<form >
+    <ng-container *ngFor="let item of inputs">
+        <app-input-create [Form]="group" [input]="item"></app-input-create>
+    </ng-container>
+    {{group.value|json}}
+</form>
