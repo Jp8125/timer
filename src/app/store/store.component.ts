@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { decrement, increment } from '../actions/counter.action';
+import { addUser, decrement, increment } from '../actions/counter.action';
+import { Users } from '../User';
 
 @Component({
   selector: 'app-store',
@@ -10,9 +11,16 @@ import { decrement, increment } from '../actions/counter.action';
 })
 export class StoreComponent {
   count$: Observable<number>;
- 
-  constructor(private store: Store<{ count: number }>) {
+   usr:Observable<Array<Users>>
+  constructor(private store: Store<{ count: number }>,private str:Store<{user:Array<Users>}>) {
     this.count$ = store.select('count');
+    this.usr=str.select('user')
+   this.usr.subscribe({
+    next:(obj)=>{
+      console.log(obj);  
+    }
+   })
+    
   }
  
   increment() {
@@ -22,5 +30,7 @@ export class StoreComponent {
   decrement() {
     this.store.dispatch(decrement());
   }
-
+addData(){
+  this.str.dispatch(addUser({id:1,name:'demo',email:'demo@gmail.com',status:'active',gender:'male'}))
+}
 }

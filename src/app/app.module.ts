@@ -11,19 +11,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { NavbarComponent } from './navbar/navbar.component';
+
 import { MatIconModule } from '@angular/material/icon';
 import { InputCreateComponent } from './input-create/input-create.component';
 import { FormCreateComponent } from './form-create/form-create.component';
 import { StoreModule } from '@ngrx/store';
-import { counterReducer } from './reducers/counter.reducer';
+import { counterReducer, userReducer } from './reducers/counter.reducer';
 import { StoreComponent } from './store/store.component';
 @NgModule({
   declarations: [
     AppComponent,
     QuestionComponent,
     DropDownComponent,
-    NavbarComponent,
+ 
     InputCreateComponent,
     FormCreateComponent,
     StoreComponent
@@ -38,7 +38,7 @@ import { StoreComponent } from './store/store.component';
     MatToolbarModule,MatSidenavModule,
     MatListModule,
     MatIconModule,
-    StoreModule.forRoot({ count: counterReducer })
+    StoreModule.forRoot({ count: counterReducer ,user:userReducer})
 
   ],
   providers: [],
