@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { addUser, decrement, increment } from '../actions/counter.action';
-import { Users } from '../User';
+import {  addTask, decrement, deleteTask, increment, updateTask } from '../actions/counter.action';
+import { Task } from '../User';
 
 @Component({
   selector: 'app-store',
@@ -11,26 +11,36 @@ import { Users } from '../User';
 })
 export class StoreComponent {
   count$: Observable<number>;
-   usr:Observable<Array<Users>>
-  constructor(private store: Store<{ count: number }>,private str:Store<{user:Array<Users>}>) {
-    this.count$ = store.select('count');
-    this.usr=str.select('user')
-   this.usr.subscribe({
-    next:(obj)=>{
-      console.log(obj);  
-    }
-   })
-    
+  constructor(private store1: Store<{ count: number }>,private store: Store<{ tasks: Task[] }>) {
+    this.count$ = store1.select('count');
   }
  
   increment() {
-    this.store.dispatch(increment());
+    this.store1.dispatch(increment());
   }
  
   decrement() {
-    this.store.dispatch(decrement());
+    this.store1.dispatch(decrement());
   }
-addData(){
-  this.str.dispatch(addUser({id:1,name:'demo',email:'demo@gmail.com',status:'active',gender:'male'}))
-}
+
+  addTask(taskTitle: string) {
+    const task: Task = {
+      id:Math.random().toString(),
+      title: taskTitle,
+      completed: false
+    };
+    this.store.dispatch(addTask({ task }));
+  }
+
+  updateTask(task: Task) {
+    this.store.dispatch(updateTask({ task }));
+  }
+
+  deleteTask(taskId: string) {
+    this.store.dispatch(deleteTask({ taskId }));
+  }
+
+  getTasks() {
+    return this.store.select('tasks');
+  }
 }

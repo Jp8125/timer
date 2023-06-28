@@ -16,7 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { InputCreateComponent } from './input-create/input-create.component';
 import { FormCreateComponent } from './form-create/form-create.component';
 import { StoreModule } from '@ngrx/store';
-import { counterReducer, userReducer } from './reducers/counter.reducer';
+import { counterReducer, taskReducer } from './reducers/counter.reducer';
 import { StoreComponent } from './store/store.component';
 @NgModule({
   declarations: [
@@ -38,7 +38,7 @@ import { StoreComponent } from './store/store.component';
     MatToolbarModule,MatSidenavModule,
     MatListModule,
     MatIconModule,
-    StoreModule.forRoot({ count: counterReducer ,user:userReducer})
+    StoreModule.forRoot({ count: counterReducer ,tasks: taskReducer})
 
   ],
   providers: [],

@@ -1,8 +1,5 @@
-export interface Users
-{
-    id:number,
-    name: string,
-    email: string,
-    gender: string,
-    status: string
-  }
+export interface Task {
+  id: string;
+  title: string;
+  completed: boolean;
+}
